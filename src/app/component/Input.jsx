@@ -1,12 +1,17 @@
-export default function Input({ temp, placeholder }) {
+export default function Input({ temp, placeholder, error }) {
   return (
     <div>
-      <p>{temp}</p>
+      <p className="font-semibold text-sm">{temp}</p>
+
       <input
-        className="text-[#334155] border-2 rounded-[8px] w-[400px] h-[50px] p-[12px]"
+        className={`
+                  focus:outline-none border rounded-lg p-3 w-[100%] ${
+                    error ? "border-[#E14942]" : "focus:border-[#0CA5E9]"
+                  }`}
         type="text"
         placeholder={placeholder}
       />
+      {error && <p className="text-[#E14942] text-sm mb-[10px]">{error}</p>}
     </div>
   );
 }
