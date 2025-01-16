@@ -11,6 +11,7 @@ export default function First({
   userInfo,
   setUserInfoError,
   clickBack,
+  userInfovalue,
 }) {
   const SecondErr = () => {
     let Error = false;
@@ -28,7 +29,7 @@ export default function First({
       }));
       Error = true;
     }
-    if (!userInfo.phoneNumber.trim()) {
+    if (!userInfo.phoneNumber.length == 8) {
       setUserInfoError((prev) => ({
         ...prev,
         phoneNumber: " Утасны дугаараа оруулна уу",
@@ -57,6 +58,7 @@ export default function First({
             placeholder="Your email"
             error={userInfoError.email}
             handleChange={handleChange}
+            userInfovalue={userInfo.email}
           />
           <Input
             name="phoneNumber"
@@ -64,6 +66,7 @@ export default function First({
             placeholder="Your phone number"
             error={userInfoError.phoneNumber}
             handleChange={handleChange}
+            userInfovalue={userInfo.phoneNumber}
           />
           <Input
             name="password"
@@ -71,6 +74,8 @@ export default function First({
             placeholder="Your password"
             error={userInfoError.password}
             handleChange={handleChange}
+            type="password"
+            userInfovalue={userInfo.password}
           />
           <Input
             name="confirmPassword"
@@ -78,6 +83,8 @@ export default function First({
             placeholder="Confirm password"
             error={userInfoError.confirmPassword}
             handleChange={handleChange}
+            userInfovalue={userInfo.confirmPassword}
+            type="password"
           />
         </div>
         <div className="flex w-[416px] gap-3 ">
@@ -85,7 +92,6 @@ export default function First({
             onClick={clickBack}
             className="bg-white h-[44px] w-[128px] rounded-md border-2 border-[#CBD5E1]  "
           >
-            <ChevronLeft />
             Back
           </button>
           <Button handleClick={SecondErr} />

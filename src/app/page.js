@@ -1,16 +1,14 @@
 "use client";
-import Image from "next/image";
-import Header from "./component/Header";
-import Input from "./component/Input";
-import { FunctionSquareIcon } from "lucide-react";
+
 import Second from "./component/First";
 import First from "./component/Second";
 import { useState } from "react";
 import Third from "./component/Third";
+import Last from "./component/Last";
 
 export default function Home() {
   const [current, setCurrent] = useState(0);
-  const Formstep = [Second, First, Third][current];
+  const Formstep = [Second, First, Third, Last][current];
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
@@ -19,6 +17,8 @@ export default function Home() {
     password: "",
     phoneNumber: "",
     confirmPassword: "",
+    day: "",
+    year: "",
   });
   const [userInfoError, setUserInfoError] = useState({
     firstName: "",
@@ -28,13 +28,19 @@ export default function Home() {
     password: "",
     phoneNumber: "",
     confirmPassword: "",
+    day: "",
+    year: "",
   });
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, date, year } = event.target;
     console.log(name, value);
     setUserInfo((prev) => ({ ...prev, [name]: value }));
+    setUserInfo((prev) => ({ ...prev, [date]: value }));
+    setUserInfo((prev) => ({ ...prev, [year]: value }));
     setUserInfoError((prev) => ({ ...prev, [name]: "" }));
+    setUserInfoError((prev) => ({ ...prev, [date]: "" }));
+    setUserInfoError((prev) => ({ ...prev, [year]: "" }));
   };
   const clickNext = () => {
     setCurrent(current + 1);
@@ -42,57 +48,6 @@ export default function Home() {
   const clickBack = () => {
     setCurrent(current - 1);
   };
-  // const handleClick = () => {
-  //   let Error = false;
-  //   const { firstName, lastName, userName } = userInfo;
-  //   if (!firstName.trim()) {
-  //     setUserInfoError((prev) => ({ ...prev, firstName: "Нэрээ оруулна уу" }));
-  //     Error = true;
-  //   }
-  //   if (!lastName.trim()) {
-  //     setUserInfoError((prev) => ({ ...prev, lastName: "Овгоо оруулна уу" }));
-  //     Error = true;
-  //   }
-  //   if (!userName.trim()) {
-  //     setUserInfoError((prev) => ({
-  //       ...prev,
-  //       userName: "Хэрэглэгчийн нэрээ оруулна уу",
-  //     }));
-  //     Error = true;
-  //   }
-  // if (!email) {
-  //   setUserInfoError((prev) => ({
-  //     ...prev,
-  //     email: " Мэйл хаягаа оруулна уу",
-  //   }));
-  //   Error = true;
-  // }
-  // if (!userInfo.phoneNumber) {
-  //   setUserInfoError((prev) => ({
-  //     ...prev,
-  //     phoneNumber: "Утасны дугаараа оруулна уу",
-  //   }));
-  //   Error = true;
-  // }
-  // if (!userInfo.password) {
-  //   setUserInfoError((prev) => ({
-  //     ...prev,
-  //     password: "Нууц үгээ оруулна уу ",
-  //   }));
-  //   Error = true;
-  // }
-  // if (!userInfo.confirmPassword) {
-  //   setUserInfoError((prev) => ({
-  //     ...prev,
-  //     confirmPassword: "Нууц үгээ давтаж оруулна уу",
-  //   }));
-  //   Error = true;
-  // }
-
-  //   if (Error == false) {
-  //     setCurrent(current + 1);
-  //   }
-  // };
 
   return (
     <div>

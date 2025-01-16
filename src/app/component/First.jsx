@@ -10,6 +10,7 @@ export default function Second({
   setUserInfoError,
   clickNext,
   userInfo,
+  userInfovalue,
 }) {
   const buttonClick = () => {
     let Error = false;
@@ -28,6 +29,7 @@ export default function Second({
       }));
       Error = true;
     }
+
     if (Error == false) {
       clickNext();
     }
@@ -43,6 +45,7 @@ export default function Second({
             placeholder="Your first name"
             error={userInfoError.firstName}
             handleChange={handleChange}
+            userInfovalue={userInfo.firstName}
           />
           <Input
             name="lastName"
@@ -50,6 +53,7 @@ export default function Second({
             placeholder="Your last name"
             error={userInfoError.lastName}
             handleChange={handleChange}
+            userInfovalue={userInfo.lastName}
           />
           <Input
             name="userName"
@@ -57,6 +61,7 @@ export default function Second({
             placeholder="Your username"
             error={userInfoError.userName}
             handleChange={handleChange}
+            userInfovalue={userInfo.userName}
           />
         </div>
         <Button handleClick={buttonClick} />
