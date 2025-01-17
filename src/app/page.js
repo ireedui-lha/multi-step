@@ -5,7 +5,8 @@ import First from "./component/Second";
 import { useState } from "react";
 import Third from "./component/Third";
 import Last from "./component/Last";
-
+import { AnimatePresence } from "motion/react";
+import * as motion from "motion/react-client";
 export default function Home() {
   const [current, setCurrent] = useState(0);
   const Formstep = [Second, First, Third, Last][current];
@@ -51,15 +52,17 @@ export default function Home() {
 
   return (
     <div>
-      <Formstep
-        clickBack={clickBack}
-        clickNext={clickNext}
-        setUserInfoError={setUserInfoError}
-        // handleClick={handleClick}
-        userInfoError={userInfoError}
-        handleChange={handleChange}
-        userInfo={userInfo}
-      />
+      <AnimatePresence initial={false}>
+        <Formstep
+          clickBack={clickBack}
+          clickNext={clickNext}
+          setUserInfoError={setUserInfoError}
+          // handleClick={handleClick}
+          userInfoError={userInfoError}
+          handleChange={handleChange}
+          userInfo={userInfo}
+        />
+      </AnimatePresence>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "./Button";
 import Header from "./Header";
 import { ChevronLeft } from "lucide-react";
-
+import * as motion from "motion/react-client";
 export default function Third({
   clickNext,
   clickBack,
@@ -27,7 +27,12 @@ export default function Third({
 
   return (
     <div className="bg-[#F4F4F4] h-[100vh] w-[100vw] flex items-center justify-center">
-      <div className="w-[480px] h-[655px] bg-[#FFF] rounded-[8px] p-[32px] flex flex-col justify-between">
+      <motion.div
+        initial={{ opacity: 0, x: 100, scale: 1 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1 }}
+        className="w-[480px] h-[655px] bg-[#FFF] rounded-[8px] p-[32px] flex flex-col justify-between"
+      >
         <div>
           <Header />
           <div className="flex  ">
@@ -81,7 +86,7 @@ export default function Third({
           </button>
           <Button handleClick={clickNext} />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

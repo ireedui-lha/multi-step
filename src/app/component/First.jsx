@@ -2,6 +2,7 @@ import Error from "next/error";
 import Button from "./Button";
 import Header from "./Header";
 import Input from "./Input";
+import * as motion from "motion/react-client";
 
 export default function Second({
   handleChange,
@@ -34,9 +35,16 @@ export default function Second({
       clickNext();
     }
   };
+
   return (
     <div className="bg-[#F4F4F4] h-[100vh] w-[100vw] flex items-center justify-center ">
-      <div className="w-[480px] h-[655px] bg-[#FFF] rounded-[8px] p-[32px] flex flex-col justify-between">
+      <motion.div
+        initial={{ opacity: 0, x: 80, scale: 1, y: 10 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -100 }}
+        transition={{ duration: 1 }}
+        className="w-[480px] h-[655px] bg-[#FFF] rounded-[8px] p-[32px] flex flex-col justify-between"
+      >
         <div>
           <Header />
           <Input
@@ -64,8 +72,9 @@ export default function Second({
             userInfovalue={userInfo.userName}
           />
         </div>
+
         <Button handleClick={buttonClick} />
-      </div>
+      </motion.div>
     </div>
   );
 }
